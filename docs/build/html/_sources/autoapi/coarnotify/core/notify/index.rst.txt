@@ -216,7 +216,7 @@ Module Contents
 
 
    .. py:property:: type
-      :type: Union[str, list[str]]
+      :type: Union[str, List[str]]
 
 
       The ``type`` of the object
@@ -312,7 +312,7 @@ Module Contents
 
 
    .. py:property:: triple
-      :type: tuple[str, str, str]
+      :type: Tuple[str, str, str]
 
 
       Get object, relationship and subject properties as a relationship triple

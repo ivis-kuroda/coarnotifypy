@@ -5,7 +5,7 @@ This module is home to all the core model objects from which the notify patterns
 from coarnotify.core.activitystreams2 import ActivityStream, Properties, ActivityStreamsTypes, ACTIVITY_STREAMS_OBJECTS
 from coarnotify import validate
 from coarnotify.exceptions import ValidationError
-from typing import Union, Tuple
+from typing import Union, Tuple, List
 import uuid
 from copy import deepcopy
 
@@ -203,12 +203,12 @@ class NotifyBase:
         self.set_property(Properties.ID, value)
 
     @property
-    def type(self) -> Union[str, list[str]]:
+    def type(self) -> Union[str, List[str]]:
         """The ``type`` of the object"""
         return self.get_property(Properties.TYPE)
 
     @type.setter
-    def type(self, types: Union[str, list[str]]):
+    def type(self, types: Union[str, List[str]]):
         self.set_property(Properties.TYPE, types)
 
     def get_property(self, prop_name: Union[str, Tuple[str, str]], by_reference: bool=None):
@@ -396,7 +396,7 @@ class NotifyPattern(NotifyBase):
                                             properties_by_reference=properties_by_reference)
         self._ensure_type_contains(self.TYPE)
 
-    def _ensure_type_contains(self, types: Union[str, list[str]]):
+    def _ensure_type_contains(self, types: Union[str, List[str]]):
         """Ensure that the type field contains the given types"""
         existing = self._stream.get_property(Properties.TYPE)
         if existing is None:
@@ -590,7 +590,7 @@ class NotifyPatternPart(NotifyBase):
             self.type = self.DEFAULT_TYPE
 
     @NotifyBase.type.setter
-    def type(self, types: Union[str, list[str]]):
+    def type(self, types: Union[str, List[str]]):
         """Set the type of the object, and validate that it is one of the allowed types if present"""
         if not isinstance(types, list):
             types = [types]
@@ -663,7 +663,7 @@ class NotifyObject(NotifyPatternPart):
         self.set_property(NotifyProperties.ITEM, value)
 
     @property
-    def triple(self) -> tuple[str, str, str]:
+    def triple(self) -> Tuple[str, str, str]:
         """Get object, relationship and subject properties as a relationship triple"""
         obj = self.get_property(Properties.OBJECT_TRIPLE)
         rel = self.get_property(Properties.RELATIONSHIP_TRIPLE)
@@ -671,7 +671,7 @@ class NotifyObject(NotifyPatternPart):
         return obj, rel, subj
 
     @triple.setter
-    def triple(self, value: tuple[str, str, str]):
+    def triple(self, value: Tuple[str, str, str]):
         obj, rel, subj = value
         self.set_property(Properties.OBJECT_TRIPLE, obj)
         self.set_property(Properties.RELATIONSHIP_TRIPLE, rel)

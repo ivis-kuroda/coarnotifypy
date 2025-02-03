@@ -8,7 +8,7 @@ ActivityStreams objects and provide a simple interface to work with them.
 **NOTE** this is not a complete implementation of AS 2.0, it is **only** what is required
 to work with COAR Notify patterns.
 """
-from typing import Union
+from typing import Union, Tuple
 
 
 ACTIVITY_STREAMS_NAMESPACE = "https://www.w3.org/ns/activitystreams"
@@ -174,7 +174,7 @@ class ActivityStream:
     def context(self, context):
         self._context = context
 
-    def _register_namespace(self, namespace: Union[str, tuple[str, str]]):
+    def _register_namespace(self, namespace: Union[str, Tuple[str, str]]):
         """
         Register a namespace in the context of the ActivityStream
         """
@@ -187,7 +187,7 @@ class ActivityStream:
         if entry not in self._context:
             self._context.append(entry)
 
-    def set_property(self, property: Union[str, tuple[str, str], tuple[str, tuple[str, str]]], value):
+    def set_property(self, property: Union[str, Tuple[str, str], Tuple[str, Tuple[str, str]]], value):
         """
         Set an arbitrary property on the object.  The property name can be one of:
 
@@ -208,7 +208,7 @@ class ActivityStream:
         if namespace is not None:
             self._register_namespace(namespace)
 
-    def get_property(self, property: Union[str, tuple[str, str], tuple[str, tuple[str, str]]]):
+    def get_property(self, property: Union[str, Tuple[str, str], Tuple[str, Tuple[str, str]]]):
         """
         Get an arbitrary property on the object.  The property name can be one of:
 

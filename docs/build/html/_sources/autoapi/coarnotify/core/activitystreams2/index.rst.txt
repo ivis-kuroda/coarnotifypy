@@ -48,7 +48,7 @@ Module Contents
    :param raw: the raw ActivityStreams object, as a dictionary
 
 
-   .. py:method:: get_property(property: Union[str, tuple[str, str], tuple[str, tuple[str, str]]])
+   .. py:method:: get_property(property: Union[str, Tuple[str, str], Tuple[str, Tuple[str, str]]])
 
       Get an arbitrary property on the object.  The property name can be one of:
 
@@ -61,7 +61,7 @@ Module Contents
 
 
 
-   .. py:method:: set_property(property: Union[str, tuple[str, str], tuple[str, tuple[str, str]]], value)
+   .. py:method:: set_property(property: Union[str, Tuple[str, str], Tuple[str, Tuple[str, str]]], value)
 
       Set an arbitrary property on the object.  The property name can be one of:
 
