@@ -34,6 +34,10 @@ class AnnounceReview(NotifyPattern):
                                 properties_by_reference=self._properties_by_reference)
         return None
 
+    @object.setter
+    def object(self, value: "NotifyObject"):
+        self.set_property(Properties.OBJECT, value.doc)
+
     @property
     def context(self) -> Union["AnnounceReviewContext", None]:
         """
@@ -50,6 +54,10 @@ class AnnounceReview(NotifyPattern):
                                       validation_context=Properties.CONTEXT,
                                       properties_by_reference=self._properties_by_reference)
         return None
+
+    @context.setter
+    def context(self, value: "NotifyObject"):
+        self.set_property(Properties.CONTEXT, value.doc)
 
     def validate(self) -> bool:
         """
